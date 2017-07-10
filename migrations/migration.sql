@@ -16,6 +16,7 @@
   CREATE TABLE predictions
   (id BIGSERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
+  user_email VARCHAR(255) REFERENCES users(email),
   predictions TEXT[]
   );
 
