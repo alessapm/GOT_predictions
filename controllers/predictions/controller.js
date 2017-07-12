@@ -3,15 +3,11 @@ const Prediction = require('../../models/prediction.js');
 const controller = {};
 
 controller.index = (req, res) => {
-  if (req.body.user.name === 'admin') {
     Prediction.findAll()
     .then((data) => {
       res.send(data)
     })
   .catch((err) => console.log('err: ', err))
-  } else {
-    res.send({message: 'this page is unavailable'})
-  }
 }
 
 controller.show = (req, res) => {
@@ -23,8 +19,12 @@ controller.show = (req, res) => {
 }
 
 controller.create = (req, res) => {
-  Prediction.create(req.body.user)
-  .then(() => console.log('predictions created'))
+  console.log('^^^^^in create, req.body: ', req.body)
+  Prediction.create(req.body.predictions, req.params.user_id, req.body.email)
+  .then(() => {
+    console.log('predictions created');
+    res.sendStatus(201)
+  })
   .catch(err => console.log('create predictions err: ', err))
 }
 

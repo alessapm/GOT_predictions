@@ -10,10 +10,11 @@ Prediction.findByUserId = (id) => {
   db.oneOrNone(`SELECT * FROM predictions WHERE user_id = $1`, [id])
 }
 
-Prediction.create = (user) => {
+Prediction.create = (predictions, id, email) => {
+  // console.log('^&^in create predictions model, id, predictions', id, predictions)
   db.none(`INSERT INTO predictions
     (user_id, user_email, predictions) VALUES ($1, $2, $3)`,
-    [user.user_id, user.user_email, user.predictions])
+    [id, email, predictions])
 }
 
 module.exports = Prediction;
