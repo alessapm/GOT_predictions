@@ -22,10 +22,10 @@ controller.create = (req, res) => {
   console.log('^^^^^in create, req.body: ', req.body)
   Prediction.create(req.body.predictions, req.params.user_id, req.body.email)
   .then(() => {
-    console.log('predictions created');
+    console.log('predictions created')
     res.sendStatus(201)
   })
-  .catch(err => console.log('create predictions err: ', err))
+  .catch((err) => console.log('create predictions err: ', err))
 }
 
 module.exports = controller;
